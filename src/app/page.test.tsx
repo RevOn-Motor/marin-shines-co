@@ -11,6 +11,11 @@ describe("Home page", () => {
     expect(headings[0]).toHaveTextContent(hero.headline);
   });
 
+  it("keeps heading order: the final CTA form title is a level-3 heading", () => {
+    render(<Home />);
+    expect(screen.getByRole("heading", { level: 3, name: "Tell us about your home" })).toBeInTheDocument();
+  });
+
   it("opens with the hero quote form and has no navigation", () => {
     const { container } = render(<Home />);
     expect(container.querySelector("#quote[data-quote-form]")).not.toBeNull();

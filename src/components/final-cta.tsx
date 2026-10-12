@@ -18,7 +18,7 @@ export function FinalCta() {
             <PhoneLink className="font-bold underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fog" />
           </p>
         </div>
-        <QuoteForm id="final-quote" action={requestQuote} title="Tell us about your home" />
+        <QuoteForm id="final-quote" action={requestQuote} title="Tell us about your home" titleAs="h3" />
       </div>
     </section>
   );

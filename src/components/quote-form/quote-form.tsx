@@ -48,6 +48,8 @@ type QuoteFormProps = {
   id: string;
   action: QuoteAction;
   title: string;
+  /** Heading level for the form title; use "h3" when the surrounding section already has an h2. */
+  titleAs?: "h2" | "h3";
 };
 
 function hasErrors(errors: FieldErrors): boolean {
@@ -78,7 +80,7 @@ async function callAction(
   }
 }
 
-export function QuoteForm({ id, action, title }: QuoteFormProps) {
+export function QuoteForm({ id, action, title, titleAs: Title = "h2" }: QuoteFormProps) {
   const uid = useId();
   const fieldId = (name: string) => `${uid}-${name}`;
   const [step, setStep] = useState<1 | 2>(1);
@@ -208,12 +210,12 @@ export function QuoteForm({ id, action, title }: QuoteFormProps) {
           aria-labelledby={fieldId("title")}
         >
           <div className="flex items-baseline justify-between gap-4">
-            <h2
+            <Title
               id={fieldId("title")}
               className="font-display text-xl font-bold text-canopy md:text-2xl"
             >
               {title}
-            </h2>
+            </Title>
             <p
               ref={stepLabel}
               tabIndex={-1}
