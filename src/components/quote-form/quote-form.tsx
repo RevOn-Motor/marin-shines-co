@@ -82,6 +82,7 @@ export function QuoteForm({ id, action, title }: QuoteFormProps) {
   const uid = useId();
   const fieldId = (name: string) => `${uid}-${name}`;
   const [step, setStep] = useState<1 | 2>(1);
+  const [hasNavigated, setHasNavigated] = useState(false);
   const [values, setValues] = useState<LeadInput>(() => emptyLeadInput(id));
   const [errors, setErrors] = useState<FieldErrors>({});
   const stepLabel = useRef<HTMLParagraphElement>(null);
@@ -140,7 +141,10 @@ export function QuoteForm({ id, action, title }: QuoteFormProps) {
   }
 
   function showStep(next: 1 | 2) {
-    flushSync(() => setStep(next));
+    flushSync(() => {
+      setHasNavigated(true);
+      setStep(next);
+    });
     stepLabel.current?.focus();
   }
 
@@ -222,7 +226,7 @@ export function QuoteForm({ id, action, title }: QuoteFormProps) {
 
           <div
             hidden={step !== 1}
-            className="mt-4 space-y-4 motion-safe:animate-step-in"
+            className={`mt-4 space-y-4 ${hasNavigated ? "motion-safe:animate-step-in" : ""}`}
           >
             <fieldset aria-describedby={describedBy("service")}>
               <legend className="text-sm font-bold text-canopy">
@@ -295,7 +299,7 @@ export function QuoteForm({ id, action, title }: QuoteFormProps) {
 
           <div
             hidden={step !== 2}
-            className="mt-4 space-y-4 motion-safe:animate-step-in"
+            className={`mt-4 space-y-4 ${hasNavigated ? "motion-safe:animate-step-in" : ""}`}
           >
             <TextField
               id={fieldId("name")}

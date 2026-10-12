@@ -48,6 +48,18 @@ async function submitValidRequest(user: User) {
   await user.click(screen.getByRole("button", { name: "Get my free quote" }));
 }
 
+describe("QuoteForm motion", () => {
+  it("does not animate on first paint, only after the visitor changes step", async () => {
+    const { user } = renderForm();
+    const stepOne = screen.getByText("What do you need?").closest("div[class*='space-y-4']");
+    expect(stepOne).not.toHaveClass("motion-safe:animate-step-in");
+
+    await completeStepOne(user);
+    const stepTwo = screen.getByLabelText("Name").closest("div[class*='space-y-4']");
+    expect(stepTwo).toHaveClass("motion-safe:animate-step-in");
+  });
+});
+
 describe("QuoteForm step 1", () => {
   it("shows what's missing and stays on step 1 when Next is pressed early", async () => {
     const { user, action } = renderForm();
