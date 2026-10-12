@@ -1,4 +1,4 @@
-import { fieldControl } from "@/components/ui";
+import { fieldControl, selectControl } from "@/components/ui";
 
 type BaseProps = {
   id: string;
@@ -46,10 +46,10 @@ export function SelectField({
         name={name}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className={fieldControl}
+        className={selectControl}
         {...errorProps(id, error)}
       >
-        <option value="">Choose</option>
+        <option value="">Select</option>
         {options.map((option) => (
           <option key={option} value={option}>
             {option}

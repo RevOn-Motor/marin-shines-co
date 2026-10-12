@@ -9,6 +9,8 @@ export const secondaryButton = `inline-flex min-h-12 items-center justify-center
 
 export const fieldControl = `mt-1 block min-h-12 w-full min-w-0 rounded-[10px] border border-canopy/60 bg-paper px-3 text-base text-ink aria-[invalid=true]:border-2 aria-[invalid=true]:border-alert ${focusRing}`;
 
+export const selectControl = `mt-1 block min-h-12 w-full min-w-0 rounded-[10px] border border-canopy/60 bg-paper px-2 text-base text-ink aria-[invalid=true]:border-2 aria-[invalid=true]:border-alert ${focusRing}`;
+
 export const formCard =
   "relative scroll-mt-4 rounded-2xl border border-canopy/15 bg-paper p-4 text-ink md:p-6";
 
