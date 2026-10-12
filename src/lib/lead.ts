@@ -11,8 +11,8 @@ export const LEAD_FIELDS = [...STEP_ONE_FIELDS, ...STEP_TWO_FIELDS] as const;
 export type LeadField = (typeof LEAD_FIELDS)[number];
 export type FieldErrors = Partial<Record<LeadField, string>>;
 
-/** Raw form values as typed. `company` is the bot honeypot; `source` is the id of the form used. */
-export type LeadInput = Record<LeadField | "company" | "source", string>;
+/** Raw form values as typed. `honeypot` is the bot trap; `source` is the id of the form used. */
+export type LeadInput = Record<LeadField | "honeypot" | "source", string>;
 
 export type Lead = {
   service: ServiceId;
@@ -29,7 +29,7 @@ export type Lead = {
 
 export type ValidationResult = { ok: true; lead: Lead } | { ok: false; fieldErrors: FieldErrors };
 
-const INPUT_KEYS = [...LEAD_FIELDS, "company", "source"] as const;
+const INPUT_KEYS = [...LEAD_FIELDS, "honeypot", "source"] as const;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SOURCE_PATTERN = /^[a-z][a-z-]{0,39}$/;
 

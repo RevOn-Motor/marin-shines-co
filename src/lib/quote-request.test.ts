@@ -13,7 +13,7 @@ const valid = {
   phone: "415-555-0123",
   email: "jane@example.com",
   notes: "",
-  company: "",
+  honeypot: "",
   source: "quote",
 };
 
@@ -53,8 +53,12 @@ describe("handleQuoteRequest", () => {
 
   it("pretends success for bots that fill the honeypot, and delivers nothing", async () => {
     const deps = makeDeps(configured);
-    expect(await handleQuoteRequest(form({ ...valid, company: "Acme" }), deps)).toEqual({ status: "success" });
+    expect(await handleQuoteRequest(form({ ...valid, honeypot: "Acme" }), deps)).toEqual({ status: "success" });
     expect(deps.fetch).not.toHaveBeenCalled();
+    expect(deps.log.info).toHaveBeenCalledWith(
+      "Honeypot field was filled; submission dropped. Input:",
+      expect.objectContaining({ name: "Jane Doe", email: "jane@example.com" }),
+    );
   });
 
   it("returns the call-us message when no destination accepts the lead", async () => {

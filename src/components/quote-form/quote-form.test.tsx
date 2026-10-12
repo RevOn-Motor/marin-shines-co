@@ -134,7 +134,7 @@ describe("QuoteForm step 2", () => {
       phone: "415-555-0123",
       email: "jane@example.com",
       notes: "",
-      company: "",
+      honeypot: "",
       source: "quote",
     });
     expect(screen.getByRole("button", { name: "Sending…" })).toBeDisabled();

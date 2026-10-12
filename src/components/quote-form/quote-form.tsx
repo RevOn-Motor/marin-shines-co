@@ -107,9 +107,9 @@ export function QuoteForm({ id, action, title }: QuoteFormProps) {
     return () => window.removeEventListener(QUOTE_SELECT_EVENT, handleSelect);
   }, []);
 
-  function update(field: LeadField | "company", value: string) {
+  function update(field: LeadField | "honeypot", value: string) {
     setValues((current) => ({ ...current, [field]: value }));
-    if (field !== "company") setErrors((current) => withoutError(current, field));
+    if (field !== "honeypot") setErrors((current) => withoutError(current, field));
   }
 
   function focusFirstInvalid(found: FieldErrors) {
@@ -317,14 +317,17 @@ export function QuoteForm({ id, action, title }: QuoteFormProps) {
       </div>
 
       <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-        <label htmlFor={fieldId("company")}>Company</label>
+        <label htmlFor={fieldId("honeypot")}>Leave this field empty</label>
         <input
-          id={fieldId("company")}
-          name="company"
+          id={fieldId("honeypot")}
+          name="honeypot"
           tabIndex={-1}
           autoComplete="off"
-          value={values.company}
-          onChange={(event) => update("company", event.target.value)}
+          data-1p-ignore
+          data-lpignore="true"
+          data-bwignore
+          value={values.honeypot}
+          onChange={(event) => update("honeypot", event.target.value)}
         />
       </div>
 

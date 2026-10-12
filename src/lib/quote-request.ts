@@ -4,8 +4,8 @@ import { DELIVERY_FAILED_MESSAGE, INVALID_MESSAGE, type QuoteState } from "./quo
 
 export async function handleQuoteRequest(formData: FormData, deps: DeliveryDeps): Promise<QuoteState> {
   const input = parseLeadForm(formData);
-  if (input.company.trim() !== "") {
-    deps.log.info("Honeypot field was filled; submission dropped.");
+  if (input.honeypot.trim() !== "") {
+    deps.log.info("Honeypot field was filled; submission dropped. Input:", input);
     return { status: "success" };
   }
 
