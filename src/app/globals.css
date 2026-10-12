@@ -37,3 +37,10 @@ body {
   font-size: 1.0625rem;
   line-height: 1.6;
 }
+
+/* Keep focused or scrolled-to content clear of the mobile sticky quote bar. */
+@media (max-width: 47.999rem) {
+  html {
+    scroll-padding-bottom: 6rem;
+  }
+}
