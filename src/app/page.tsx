@@ -9,6 +9,11 @@ import { Services } from "@/components/services";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StickyCta } from "@/components/sticky-cta";
+import { JsonLd } from "@/components/json-ld";
+import { pageMetadata, siteUrl } from "@/lib/seo";
+import { localBusinessJsonLd } from "@/lib/structured-data";
+
+export const metadata = pageMetadata;
 
 export default function Home() {
   return (
@@ -26,6 +31,7 @@ export default function Home() {
       </main>
       <SiteFooter />
       <StickyCta />
+      <JsonLd data={localBusinessJsonLd(siteUrl())} />
     </>
   );
 }

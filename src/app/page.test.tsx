@@ -39,4 +39,12 @@ describe("Home page", () => {
     const internal = Array.from(container.querySelectorAll('a[href^="/"]')).map((link) => link.getAttribute("href"));
     expect(new Set(internal)).toEqual(new Set(["/privacy"]));
   });
+
+  it("describes the business to search engines", () => {
+    const { container } = render(<Home />);
+    const types = Array.from(container.querySelectorAll('script[type="application/ld+json"]')).map(
+      (script) => (JSON.parse(script.textContent ?? "{}") as { "@type": string })["@type"],
+    );
+    expect(types).toEqual(expect.arrayContaining(["LocalBusiness", "FAQPage"]));
+  });
 });
