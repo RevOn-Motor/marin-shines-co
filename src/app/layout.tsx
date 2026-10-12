@@ -14,6 +14,8 @@ const atkinson = Atkinson_Hyperlegible_Next({
   variable: "--font-atkinson",
   subsets: ["latin"],
   display: "swap",
+  adjustFontFallback: false,
+  fallback: ["system-ui", "arial"],
 });
 
 export const metadata: Metadata = {
