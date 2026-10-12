@@ -1,26 +1,39 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* "The fog lifts over Mt. Tam": tokens from the design spec, section 4. */
+@theme {
+  --color-fog: #edf1ef;
+  --color-paper: #ffffff;
+  --color-canopy: #1e3d32;
+  --color-ink: #24302b;
+  --color-eucalyptus: #8fae9c;
+  --color-poppy: #f5821f;
+  --color-poppy-light: #f79a4a;
+  --color-alert: #a3261b;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --animate-step-in: step-in 200ms ease-out;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @keyframes step-in {
+    from {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 }
 
+@theme inline {
+  --font-sans: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bitter), ui-serif, Georgia, serif;
+}
+
+/* Light only: the page sets its own colors so OS dark mode can't invert them. */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-fog);
+  color: var(--color-ink);
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
