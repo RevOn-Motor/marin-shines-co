@@ -172,6 +172,21 @@ describe("QuoteForm step 2", () => {
     expect(trackLeadConversion).not.toHaveBeenCalled();
   });
 
+  it("lets the visitor retry after a failed delivery", async () => {
+    const action = vi
+      .fn<QuoteAction>()
+      .mockResolvedValueOnce({ status: "error", message: DELIVERY_FAILED_MESSAGE, fieldErrors: {} })
+      .mockResolvedValueOnce({ status: "success" });
+    const { user } = renderForm(action);
+    await submitValidRequest(user);
+    expect(await screen.findByRole("alert")).toHaveTextContent(DELIVERY_FAILED_MESSAGE);
+
+    await user.click(screen.getByRole("button", { name: "Get my free quote" }));
+
+    expect(await screen.findByText("Quote request sent.")).toBeInTheDocument();
+    expect(action).toHaveBeenCalledTimes(2);
+  });
+
   it("returns to step 1 when the server rejects a step 1 field", async () => {
     const action = vi.fn<QuoteAction>(async () => ({
       status: "error",

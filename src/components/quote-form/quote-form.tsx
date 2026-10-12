@@ -90,9 +90,12 @@ export function QuoteForm({ id, action, title }: QuoteFormProps) {
   const [state, dispatch, pending] = useActionState(submit, initialQuoteState);
 
   useEffect(() => {
-    inFlight.current = false;
     if (state.status === "success") successMessage.current?.focus();
   }, [state]);
+
+  useEffect(() => {
+    if (!pending) inFlight.current = false;
+  }, [pending]);
 
   useEffect(() => {
     function handleSelect(event: Event) {

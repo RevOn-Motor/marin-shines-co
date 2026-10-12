@@ -7,8 +7,13 @@ declare global {
 
 function sendConversion(sendTo: string | undefined): boolean {
   if (!sendTo || typeof window === "undefined" || typeof window.gtag !== "function") return false;
-  window.gtag("event", "conversion", { send_to: sendTo });
-  return true;
+  try {
+    window.gtag("event", "conversion", { send_to: sendTo });
+    return true;
+  } catch {
+    // A broken or blocked tag must never get in the way of a lead.
+    return false;
+  }
 }
 
 // process.env.NEXT_PUBLIC_* must be written out literally so Next inlines it at build time.
