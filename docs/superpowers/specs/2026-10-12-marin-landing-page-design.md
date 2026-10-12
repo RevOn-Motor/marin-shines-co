@@ -195,7 +195,7 @@ QuoteForm ─(useActionState)→ requestQuote(prev, formData)
   ok → {status:'success'}   else → {status:'error', values}
 ```
 
-**Sheet payload** (JSON POST to `LEADS_SHEET_WEBHOOK_URL`): `{secret, submittedAt, service, town, bedrooms, bathrooms, name, phone, email, notes, page}`. The Apps Script rejects a wrong secret and appends one row in that column order.
+**Sheet payload** (JSON POST to `LEADS_SHEET_WEBHOOK_URL`): `{secret, submittedAt, service, town, bedrooms, bathrooms, name, phone, email, notes, source}` (`source` = id of the form used: `quote` or `final-quote`). The Apps Script rejects a wrong secret and appends one row in that column order.
 
 **Resend payload** (`POST https://api.resend.com/emails`, `Authorization: Bearer RESEND_API_KEY`): `from=LEAD_EMAIL_FROM`, `to=LEAD_EMAIL_TO`, `reply_to=lead.email`, subject `New quote request: {service} in {town}`, plain-text body listing every field. User-supplied values are never interpolated into HTML.
 
