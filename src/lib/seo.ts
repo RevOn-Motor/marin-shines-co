@@ -9,7 +9,7 @@ export function siteUrl(): string {
 export const PAGE_TITLE = `House Cleaning in Marin County, CA | ${site.name}`;
 
 export const PAGE_DESCRIPTION =
-  "House cleaning in Mill Valley, San Rafael, Novato and all of Marin County. Get a free quote in under a minute, plus a free add-on with your first clean.";
+  "House cleaning in Mill Valley, San Rafael, Novato and all of Marin County. Get a free quote in under a minute, plus a free add-on with your first clean."; // LAUNCH-BLOCKER: keep the offer wording in sync with site.offer
 
 export const pageMetadata: Metadata = {
   title: PAGE_TITLE,
