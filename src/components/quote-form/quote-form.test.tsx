@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { selectService } from "@/lib/quote-events";
@@ -155,9 +155,21 @@ describe("QuoteForm step 2", () => {
     await submitValidRequest(user);
 
     expect(await screen.findByRole("alert")).toHaveTextContent(DELIVERY_FAILED_MESSAGE);
+    expect(within(screen.getByRole("alert")).getByRole("link")).toHaveAttribute("href", "tel:+14155550123");
     expect(screen.getByLabelText("Name")).toHaveValue("Jane Doe");
     expect(screen.getByRole("button", { name: "Get my free quote" })).toBeEnabled();
     expect(trackLeadConversion).not.toHaveBeenCalled();
+  });
+
+  it("keeps the same data-quote-form element after a successful submit", async () => {
+    const { user } = renderForm();
+    const before = document.querySelector("[data-quote-form]");
+    await submitValidRequest(user);
+    await screen.findByText("Quote request sent.");
+
+    expect(before).not.toBeNull();
+    expect(document.querySelector("[data-quote-form]")).toBe(before);
+    expect(before).toBeInTheDocument();
   });
 
   it("shows the phone fallback when the action throws", async () => {
