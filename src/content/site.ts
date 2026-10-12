@@ -108,7 +108,7 @@ export const services: Service[] = [
 export const hero = {
   headline: "House Cleaning in Marin County",
   subhead: `Come home to a spotless house without giving up your weekend. Your first clean includes ${site.offer}.`,
-  subheadShort: `Get your weekends back. Your first clean includes ${site.offer}.`,
+  subheadShort: `Free quote in under a minute. Your first clean includes ${site.offer}.`,
   reassurance: "Free quote. No commitment.",
 };
 

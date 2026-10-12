@@ -1,4 +1,4 @@
-import { services, servicesIntro } from "@/content/site";
+import { hero, services, servicesIntro } from "@/content/site";
 import { CheckIcon } from "./icons";
 import { QuoteLink } from "./quote-link";
 import { primaryButton, sectionHeading, sectionInner } from "./ui";
@@ -39,6 +39,7 @@ export function Services() {
             </li>
           ))}
         </ul>
+        <p className="mt-6 font-bold text-canopy">{hero.reassurance}</p>
       </div>
     </section>
   );
