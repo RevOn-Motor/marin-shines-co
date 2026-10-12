@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { focusRing } from "@/components/ui";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-12 md:px-8 md:py-16">
-      <Link href="/" className="font-display text-xl font-bold text-canopy underline">
+      <Link href="/" className={`font-display text-xl font-bold text-canopy underline ${focusRing}`}>
         {site.name}
       </Link>
       <h1 className="mt-10 font-display text-4xl font-bold text-canopy">Privacy policy</h1>
@@ -44,7 +45,7 @@ export default function PrivacyPage() {
           <h2>Your choices</h2>
           <p>
             You can ask what we hold about you, and ask us to correct or delete it. Email{" "}
-            <a href={`mailto:${site.email}`} className="underline">
+            <a href={`mailto:${site.email}`} className={`underline ${focusRing}`}>
               {site.email}
             </a>{" "}
             or call {site.phone.display}.
