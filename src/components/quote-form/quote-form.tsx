@@ -232,7 +232,7 @@ export function QuoteForm({ id, action, title }: QuoteFormProps) {
                 {services.map((service) => (
                   <label
                     key={service.id}
-                    className="flex min-h-12 cursor-pointer items-center rounded-xl border-2 border-canopy/20 px-3 font-bold text-canopy has-checked:border-canopy has-checked:bg-fog has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-canopy"
+                    className="flex min-h-12 cursor-pointer items-center rounded-xl border-2 border-canopy/60 px-3 font-bold text-canopy has-checked:border-canopy has-checked:bg-fog has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-canopy"
                   >
                     <input
                       id={fieldId(`service-${service.id}`)}
